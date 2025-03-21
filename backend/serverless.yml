@@ -5,3 +5,32 @@ provider:
   name: aws
   runtime: nodejs20.x
   region: us-east-1
+  profile: ${self:custom.profile.${opt:stage, 'swanandp'}}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:Scan
+        - dynamodb:Query
+
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:GetObject
+        - s3:DeleteObject
+        - s3:ListBucket  
+custom:
+  profile: 
+    swanandp: SwanandPrime-087484585762
+  
+functions:
+  app:
+    handler: dist/app.handler
+    events:
+      - http:
+          path: /users
+          method: get
+        
