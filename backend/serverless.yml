@@ -1,0 +1,7 @@
+service: self-help-service-portal-backend
+
+
+provider: 
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
