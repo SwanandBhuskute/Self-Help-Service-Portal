@@ -4,8 +4,11 @@ service: self-help-service-portal-backend
 provider: 
   name: aws
   runtime: nodejs20.x
-  region: us-east-1
+  region: ap-south-1
   profile: ${self:custom.profile.${opt:stage, 'swanandp'}}
+  environment:
+    USER_POOL_ID: ${self:custom.userpools.poolid.${opt:stage, 'swanandp'}}
+    CLIENT_ID: ${self:custom.userpools.clientid.${opt:stage, 'swanandp'}}
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -15,6 +18,7 @@ provider:
         - dynamodb:DeleteItem
         - dynamodb:Scan
         - dynamodb:Query
+      Resource: "*"
 
     - Effect: Allow
       Action:
@@ -22,9 +26,26 @@ provider:
         - s3:GetObject
         - s3:DeleteObject
         - s3:ListBucket  
+      Resource: "*"
+      
+    - Effect: Allow
+      Action:
+        - cognito-idp:AdminCreateUser
+        - cognito-idp:AdminDeleteUser
+        - cognito-idp:AdminUpdateUserAttributes
+        - cognito-idp:AdminGetUser
+        - cognito-idp:AdminInitiateAuth
+        - cognito-idp:AdminSetUserPassword
+      Resource: "arn:aws:cognito-idp:ap-south-1:087484585762:userpool/ap-south-1_OX8jalTHw"
 custom:
   profile: 
-    swanandp: SwanandPrime-087484585762
+    swanandp: swanand-dev
+  userpools:
+    poolid:
+      swanandp: ap-south-1_OX8jalTHw
+    clientid:
+      # swanandp: 2oagstmgft6fv97ksv4i2203e9
+      swanandp: 78c4u7h555qause1t5qq33p07s
   
 functions:
   app:
@@ -33,4 +54,20 @@ functions:
       - http:
           path: /users
           method: get
-        
+          cors: true
+      - http:
+          path: /users/admin/register
+          method: post
+          cors: true
+      - http:
+          path: /users/admin/login
+          method: post
+          cors: true
+      - http:
+          path: /users/admin/employees
+          method: post
+          cors: true
+      - http:
+          path: users/employee/login
+          method: post
+          cors: true
