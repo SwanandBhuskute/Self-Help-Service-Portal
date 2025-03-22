@@ -1,0 +1,26 @@
+.task-inbox {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: center;
+  }
+  
+  .task-inbox input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+  }
+  
+  .task-inbox button {
+    padding: 0.8rem 1.2rem;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .task-inbox button:hover {
+    background-color: #005bb5;
+  }
