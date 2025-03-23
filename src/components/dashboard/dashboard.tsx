@@ -1,7 +1,7 @@
 import { Typography, Box } from "@mui/material";
-import "./AdminDashboard.css";
+import "./dashboard.css";
 
-export const AdminDashboard = () => {
+export const Dashboard = () => {
   return (
     <Box className="admin-dashboard">
       <Typography variant="h4" className="admin-title">
