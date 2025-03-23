@@ -1,14 +1,16 @@
 import { Request, Response, Router } from "express";
-import { createEmployee, loginAdmin, loginEmployee, registerAdmin } from "../services/users.services";
+import { registerAdmin } from "../services/users/registerAdmin";
+import { loginAdmin } from "../services/users/loginAdmin";
+import { createEmployee } from "../services/users/createEmployee";
+import { loginEmployee } from "../services/users/loginEmployee";
 
 const router = Router();
 
-//admin routes
 router.post("/admin/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    if(!username || !email || !password) {
+    if (!username || !email || !password) {
       res.status(400).json({ message: "Missing required fields" });
     }
 
@@ -23,7 +25,7 @@ router.post("/admin/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    if(!username || !password) {
+    if (!username || !password) {
       res.status(400).json({ message: "Missing required fields" });
     }
 
@@ -58,11 +60,12 @@ router.get("/", async (req: Request, res: Response) => {
   try {
     const users = [
       { id: 1, name: "Alice" },
-        { id: 2, name: "Bob" },
-        { id: 3, name: "Charlie" },
+      { id: 2, name: "Bob" },
+      { id: 3, name: "Charlie" },
     ];
     res.status(200).json(users);
-    
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("An error ocurred:", error);
     res.status(500).json(error);
