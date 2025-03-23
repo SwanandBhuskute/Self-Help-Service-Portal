@@ -1,17 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HomePage } from "./components/homepage/HomePage";
-import { AdminDashboard } from "./components/admin/AdminDashboard";
-import { EmployeeDashboard } from "./components/employee/EmployeeDashboard";
-import PriorityBoard from "./components/priorityBoard/PriorityBoard";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { Dashboard } from "./components/dashboard/dashboard";
+import AuthPage from "./components/auth/authPage";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/employee" element={<EmployeeDashboard />} />
-        <Route path="/priority-board" element={<PriorityBoard />} />
+      <Route path="/" element={<AuthPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );
