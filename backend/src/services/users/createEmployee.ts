@@ -10,13 +10,12 @@ export const createEmployee = async (username: string, password: string, employe
             TemporaryPassword: password,
             UserAttributes: [
                 { Name: "email", Value: employeeData.email },
-                { Name: "custom:role", Value: "Employee" },
                 { Name: "email_verified", Value: "true" },
             ],
             MessageAction: "SUPPRESS",
         };
 
-        await cognito.adminCreateUser(params).promise();
+        const user = await cognito.adminCreateUser(params).promise();
 
         await cognito.adminSetUserPassword({
             UserPoolId: USER_POOL_ID,
@@ -25,11 +24,14 @@ export const createEmployee = async (username: string, password: string, employe
             Permanent: true,
         }).promise();
 
+        const employeeId = user.User?.Attributes?.find(attr => attr.Name === "sub")?.Value;
+        if (!employeeId) throw new Error("Failed to retrieve employeeId from Cognito");
+
         const employeeParams = {
             TableName: EMPLOYEE_TABLE,
             Item: {
-                id: employeeData.id,
-                username: username,
+                id: employeeId,
+                username,
                 email: employeeData.email,
                 name: employeeData.name,
                 bankDetails: employeeData.bankDetails,
@@ -44,10 +46,9 @@ export const createEmployee = async (username: string, password: string, employe
 
         await db.put(employeeParams).promise();
 
-        return { message: "Employee created successfully!" };
+        return { message: "Employee created successfully!", employeeId };
     } catch (error) {
         console.error("Error creating employee:", error);
-        throw new Error("Failed to create employee");
+        throw error;
     }
 };
-

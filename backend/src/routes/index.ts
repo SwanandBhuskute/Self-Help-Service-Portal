@@ -6,6 +6,7 @@ import finance from "./finance.route"
 import documents from "./documents.route";
 import tasks from "./tasks.route"
 import taskRequests from "./taskRequests.route"
+import taskUpdates from "./teamUpdates.route"
 
 const router = Router();
 
@@ -16,6 +17,6 @@ router.use("/finance", finance);
 router.use("/documents", documents);
 router.use("/tasks", tasks);
 router.use("/task-requests", taskRequests);
-
+router.use("/update", taskUpdates);
 
 export default router;

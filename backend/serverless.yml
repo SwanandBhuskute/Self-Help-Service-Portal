@@ -37,7 +37,7 @@ provider:
         - cognito-idp:AdminGetUser
         - cognito-idp:AdminInitiateAuth
         - cognito-idp:AdminSetUserPassword
-      Resource: "arn:aws:cognito-idp:ap-south-1:087484585762:userpool/ap-south-1_OX8jalTHw"
+      Resource: "arn:aws:cognito-idp:ap-south-1:087484585762:userpool/ap-south-1_VS3TzsPNb"
 custom:
   profile: 
     swanandp: swanand-dev
@@ -45,8 +45,6 @@ custom:
     poolid:
       swanandp: ap-south-1_VS3TzsPNb
     clientid:
-      # swanandp: 2oagstmgft6fv97ksv4i2203e9
-    #   swanandp: 78c4u7h555qause1t5qq33p07s
       swanandp: 3btfg0h20rtnfbhla85gv66lht
   buckets:
     swanandp: self-help-service-portal
@@ -55,10 +53,6 @@ functions:
   app:
     handler: dist/app.handler
     events:
-      - http:
-          path: /users
-          method: get
-          cors: true
       - http:
           path: /users/admin/register
           method: post
@@ -72,8 +66,56 @@ functions:
           method: post
           cors: true
       - http:
-          path: users/employee/login
+          path: /users/employee/login
           method: post
+          cors: true
+      - http:
+          path: /users/teams
+          method: post
+          cors: true
+      - http:
+          path: /users/teams
+          method: get
+          cors: true
+      - http:
+          path: /users/{userId}
+          method: get
+          cors: true
+      - http:
+          path: /users
+          method: get
+          cors: true
+      - http:
+          path: /users/teams/{teamId}
+          method: get
+          cors: true
+      - http:
+          path: /users/teams/{teamId}
+          method: put
+          cors: true
+      - http:
+          path: /users/teams/{teamId}
+          method: delete
+          cors: true
+      - http:
+          path: /updates
+          method: post
+          cors: true
+      - http:
+          path: /updates/team/{teamId}
+          method: get
+          cors: true
+      - http:
+          path: /updates/update/{updateId}
+          method: get
+          cors: true
+      - http:
+          path: /updates/update/{updateId}
+          method: put
+          cors: true
+      - http:
+          path: /updates/update/{updateId}
+          method: delete
           cors: true
       - http:
           path: /attendance

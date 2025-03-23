@@ -9,6 +9,8 @@ export const TASKS_TABLE = "Tasks";
 export const TASK_REQUESTS_TABLE = "TaskRequests";
 export const TASK_COMMENTS_TABLE = "TaskCommentsTable";
 export const DOCUMENTS_TABLE = "DocumentsTable"
+export const TEAMS_TABLE = "TeamsTable";
+export const TEAM_UPDATES_TABLE = "TeamUpdatesTable";
 
 export const TASKS_STATUSES = {
     "todo" : "TODO",

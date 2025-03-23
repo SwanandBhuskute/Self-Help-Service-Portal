@@ -1,14 +1,90 @@
-.admin-dashboard {
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ /* src/components/Dashboard.css */
+ .dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #f8f9fa; /* Light gray background */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  font-size: 2.5rem; /* 40px */
+  color: #2c3e50; /* Dark blue-gray */
+  margin-bottom: 2rem;
+  font-weight: 600;
   text-align: center;
 }
 
-.admin-title {
-  margin-bottom: 20px;
-  color: #007bff;
+.services-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem; /* 24px */
+  max-width: 1200px;
+  padding: 1rem;
+}
+
+.service-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.75rem; /* 12px */
+  padding: 1.5rem; /* 24px */
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  width: 18rem; /* 288px */
+  height: 12rem; /* 192px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.service-card:hover {
+  transform: translateY(-0.5rem); /* Move card up slightly */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #f0f2f5; /* Slightly darker background on hover */
+}
+
+.service-card h2 {
+  font-size: 1.5rem; /* 24px */
+  color: #2c3e50; /* Dark blue-gray */
+  margin: 0;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.service-card:hover h2 {
+  color: #007bff; /* Blue color on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .service-card {
+    width: 100%; /* Full width on smaller screens */
+    height: auto;
+    padding: 1rem; /* 16px */
+  }
+
+  h1 {
+    font-size: 2rem; /* 32px */
+  }
+
+  .service-card h2 {
+    font-size: 1.25rem; /* 20px */
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 1rem; /* 16px */
+  }
+
+  h1 {
+    font-size: 1.75rem; /* 28px */
+  margin-bottom: 1.5rem; /* 24px */
+  }
 }

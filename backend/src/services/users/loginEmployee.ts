@@ -1,4 +1,4 @@
-import {cognito} from "../../clients/clients";
+import { cognito } from "../../clients/clients";
 import { CLIENT_ID } from "../../utils/constants";
 
 export const loginEmployee = async (username: string, password: string) => {
@@ -10,5 +10,7 @@ export const loginEmployee = async (username: string, password: string) => {
             PASSWORD: password,
         },
     };
-    return cognito.initiateAuth(params).promise();
+
+    const response = await cognito.initiateAuth(params).promise();
+    return response;
 };

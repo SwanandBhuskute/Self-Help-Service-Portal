@@ -1,0 +1,42 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #333;
+}
+
+.navbarLogo {
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  align-items: center;
+}
+
+.nav-right {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-button {
+  background: #444;
+  border: none;
+  color: white;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.2s ease-in-out;
+}
+
+.nav-button:hover {
+  background: #555;
+}
+
+.logout {
+  background: #d9534f;
+}
+
+.logout:hover {
+  background: #c9302c;
+}

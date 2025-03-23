@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { db } from "../../clients/clients";
 import { TASKS_TABLE } from "../../utils/constants";
 
